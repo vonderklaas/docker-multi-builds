@@ -1,0 +1,25 @@
+version: '3'
+
+# Instead of running huge Docker commands into the CLI
+# we can use docker-compose, and specify all instructions here
+
+# Containers
+services:
+  react-app:
+    # Since we create a custom image
+    build: . # Path to Dockerifle
+    ports:
+      # Include mapping
+      - '3000:3000'
+    volumes:
+      # Define bind-mount
+      - ./src:/app/src:ro # Optional Read-Only prefix
+    # Environment variables
+    # environment:
+    #   - REACT_APP_NAME=garbalau
+    env_file:
+      - ./.env
+# Commands
+# docker-compose up <- bring the container
+# docker-compose down <- kill and remove container
+# -d <- optional flag for detached (terminal remains unoccupied)
