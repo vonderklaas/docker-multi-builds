@@ -7,7 +7,9 @@ version: '3'
 services:
   react-app:
     # Since we create a custom image
-    build: . # Path to Dockerifle
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     ports:
       # Include mapping
       - '3000:3000'
