@@ -6,7 +6,7 @@ const App = () => {
     <div className='App'>
       <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
-        <h2>Dockerify React!</h2>
+        <h2>Docker + React!</h2>
         <p>{`.env -> ${process.env.REACT_APP_NAME}`}</p>
         <a
           className='App-link'

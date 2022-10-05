@@ -1,4 +1,6 @@
-FROM node
+# Stage 1
+
+FROM node as build-stage
 
 WORKDIR /app
 
@@ -25,3 +27,12 @@ ENV REACT_APP_NAME=myName
 
 # RUN at Build time
 RUN npm run build
+
+# Stage 2
+FROM nginx
+
+# We need to copy the output of "npm run build"
+# From the previous stage called "build-stage" copy whatever is in
+# 'build' directory, the static assets, inside nginx directory 
+COPY --from=build-stage /app/build /usr/share/nginx/html
+
