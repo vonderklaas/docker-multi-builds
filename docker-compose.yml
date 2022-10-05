@@ -4,10 +4,3 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-# -f <- Filename
-# -d <- Detached
-# --build <- To be sure Image is built
-# Always start with shared config
-
-# docker-compose -f docker-compose.yml -f docker-compose-dev.yml -d --build
-# docker-compose -f docker-compose.yml -f docker-compose-dev.yml down

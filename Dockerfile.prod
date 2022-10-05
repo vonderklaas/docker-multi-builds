@@ -1,38 +1,19 @@
-# Stage 1
-
 FROM node as build-stage
 
 WORKDIR /app
 
-# Everytime the line is changed, Docker runs
-# all commands below that line
-
-# Cache result (it doesn't change very often)
-# Only when we change our package.json
-# We want to run next step
 COPY package.json .
 
-# Cache result
-# RUN is Image command
-# Runs without cache only if we changed our package.json
 RUN npm install
 
-# Cache result (re-run everytime we change our source code)
 COPY . .
 
-# Environment variables
-ENV REACT_APP_NAME=myName
+ARG REACT_APP_NAME
 
-# EXPOSE 3000
+ENV REACT_APP_NAME=$REACT_APP_NAME
 
-# RUN at Build time
 RUN npm run build
 
-# Stage 2
 FROM nginx
 
-# We need to copy the output of "npm run build"
-# From the previous stage called "build-stage" copy whatever is in
-# 'build' directory, the static assets, inside nginx directory 
 COPY --from=build-stage /app/build /usr/share/nginx/html
-

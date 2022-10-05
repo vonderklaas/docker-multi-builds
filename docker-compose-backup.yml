@@ -25,3 +25,15 @@ services:
 # docker-compose up <- bring the container
 # docker-compose down <- kill and remove container
 # -d <- optional flag for detached (terminal remains unoccupied)
+
+# Compose DEV & PROD
+# -f <- Filename
+# -d <- Detached
+# --build <- To be sure Image is built
+# Always start with shared config
+
+# docker-compose -f docker-compose.yml -f docker-compose-dev.yml -d --build
+# docker-compose -f docker-compose.yml -f docker-compose-dev.yml down
+
+# docker-compose -f docker-compose.yml -f docker-compose-prod.yml -d --build
+# docker-compose -f docker-compose.yml -f docker-compose-prod.yml down
